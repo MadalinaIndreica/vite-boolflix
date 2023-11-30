@@ -2,13 +2,14 @@
 import axios from "axios";
 import { store } from "./store.js";
 import AppHeader from "./components/AppHeader.vue";
+import AppMain from "./components/AppMain.vue"
 export default {
   data() {
     return {
       store,
     };
   },
-  components: { AppHeader },
+  components: { AppHeader, AppMain },
 
 
   methods: {
@@ -22,6 +23,7 @@ export default {
           },
         })
         .then((resp) => {
+          console.log(resp);
           this.store.movies = resp.data.results;
         });
     },
@@ -34,7 +36,8 @@ export default {
 </script>
 
 <template>
-  <AppHeader @btnSearch="handleSearch" />
+  <AppHeader @btnSearch="handleSearch" />,
+  <AppMain/>
 </template>
 
 <style lang="scss">
