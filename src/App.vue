@@ -15,6 +15,7 @@ export default {
   methods: {
     handleSearch() {
       console.log("Cerca");
+      // CHIAMATA MOVIES
       axios
         .get(this.store.apiUrl + this.store.searchMovie, {
           params: {
@@ -26,6 +27,19 @@ export default {
           console.log(resp);
           this.store.movies = resp.data.results;
         });
+      // CHIAMATA  SERIE TV
+      axios
+        .get(this.store.apiUrl + this.store.searchTv, {
+          params: {
+            query: this.store.searchText,
+            api_key: this.store.apiKey,
+          },
+        })
+        .then((resp) => {
+          console.log(resp);
+          this.store.tvSeries = resp.data.results;
+        });
+
     },
 
 
@@ -36,7 +50,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @btnSearch="handleSearch" />,
+  <AppHeader @btn-Search="handleSearch" />,
   <AppMain/>
 </template>
 
