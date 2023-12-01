@@ -12,6 +12,7 @@ export default {
 </script>
 
 <template>
+   <section>
     <div class="container">
         <h2>Movie</h2>
         <div class="row align-items-center justify-content-around gap-5 flex-wrap">
@@ -30,14 +31,24 @@ export default {
             </div>
         </div>
     </div>
+    </section>
+    
 </template>
 
 <style lang="scss" scoped>
 h2{
     color: white;
 }
+// .row{
+//     overflow: scroll;
+//   scrollbar-color: red orange;
+//   scrollbar-width: thin;
+// }
 .col {
     width: 342px;
-    overflow-y: auto;
+    overflow: auto;
+    
 }
+
+
 </style>

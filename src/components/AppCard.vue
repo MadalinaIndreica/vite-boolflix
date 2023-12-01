@@ -6,7 +6,7 @@ export default {
     },
     data() {
         return {
-            flags: ["en", "it", "fr", "sp"],
+            flags: ["en", "it", "fr", "es"],
         }
 
     },
@@ -24,8 +24,12 @@ export default {
 </script>
 
 <template>
-    <div class="card">
-        <img class="poster" :src="`${imgUrl}${movieObject.poster_path}`" alt="">
+    <div class="card h-100">
+        <img v-if="movieObject.poster_path" class="poster" :src="`${imgUrl}${movieObject.poster_path}`" alt="">
+        <!-- <img v-else src="../assets/ima" -->
+        <div v-else class="no-img">
+            <p>nessuna immagine trovata</p>
+        </div>
         <div class="text-content">
             <h3>{{ movieObject.title ? movieObject.title : movieObject.name }}</h3>
             <h4>{{ movieObject.original_title ? movieObject.original_title : movieObject.original_name }}</h4>
@@ -41,48 +45,54 @@ export default {
 <style lang="scss" scoped>
 .card {
     width: 100%;
-    border: 1px solid white;
     border-radius: 10px;
     position: relative;
+    overflow-x: hidden;
+    background-color: black;
+
+    .no-img {
+        width: 300px;
+        text-align: center;
+        padding-top: 150px;
+    }
+
 
 
     .flag-img {
         width: 30px;
-    
+
     }
 
     img {
         width: 300px;
 
     }
-  
+
 
     .text-content {
         position: absolute;
         left: 20px;
         top: 60px;
-        color: black;
+        color: white;
         display: none;
+
 
     }
 
     &:hover {
-        .flag-img{
+        .flag-img {
             opacity: 100%;
-            filter: none;
 
         }
-       
 
         img {
-
-            opacity: 25%;
-            color: black;
-            filter: brightness(100%);
+            opacity: 0;
         }
+        
 
         .text-content {
             display: block;
+            overflow-y: hidden;
         }
     }
 }</style>
